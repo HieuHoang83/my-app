@@ -46,7 +46,8 @@ export const authOptions: AuthOptions = {
         );
 
         if (response.error) {
-          throw new Error(response.error);
+          console.log(response.message);
+          throw new Error(response.message);
         } else {
           return response.data as any;
         }

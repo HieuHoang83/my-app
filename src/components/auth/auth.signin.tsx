@@ -2,19 +2,22 @@
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errUser, setErrUser] = useState("");
+  const [errpass, setErrpass] = useState("");
   const router = useRouter();
+
   const handleSubmit = async () => {
-    if (username.length == 0) {
-      alert("Username is not Empty");
+    if (errUser) {
       return;
     }
-    if (password.length == 0) {
-      alert("Password is not Empty");
+    if (errpass) {
+      console.log("return");
+
       return;
     }
     // Add your logic here to call the server to authenticate the user and handle the response.
@@ -23,12 +26,13 @@ function Login() {
       password: password,
       redirect: false,
     });
+    console.log(res);
     if (!res?.error) {
       setUsername("");
       setPassword("");
       router.push("/");
     } else {
-      alert(res.error);
+      setErrpass(res?.error);
     }
   };
   const headertitle = () => {
@@ -46,10 +50,10 @@ function Login() {
   const formInput = () => {
     return (
       <div className=" lg:mt-5 xl:mt-8">
-        <div className="mt-4 ml-3">
+        <div className="mt-4 ml-3 w-full">
           <label
             htmlFor="Username"
-            className="text-xl font-semibold block mb-1  xl:text-sm   md:text-base "
+            className="text-xl font-semibold block mb-1   md:text-base xl:text-lg  "
           >
             Username
           </label>
@@ -59,15 +63,28 @@ function Login() {
             placeholder="Enter Username..."
             className="border w-full  px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 rounded-md"
             value={username}
+            autoFocus
             onChange={(e) => {
+              if (e.target.value.length !== 0) {
+                setErrUser("");
+              } else {
+                setErrUser("Username is required");
+              }
               setUsername(e.target.value);
             }}
           />
+          {errUser ? (
+            <span className="text-red-500 block text-lg h-7 items-center ">
+              {errUser}
+            </span>
+          ) : (
+            <></>
+          )}
         </div>
-        <div className=" mt-6 ml-3 text-base:mt-4 xl:mt-6 ">
+        <div className=" mt-4 ml-3 text-base  xl:mt-4 ">
           <label
             htmlFor="Password "
-            className="text-xl  block mb-1  font-semibold md:text-base xl:text-sm "
+            className="text-xl  block mb-1  font-semibold md:text-base xl:text-lg  "
           >
             Password
           </label>
@@ -78,11 +95,29 @@ function Login() {
             className="border w-full  px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 rounded-md"
             value={password}
             onChange={(e) => {
+              if (e.target.value.length !== 0) {
+                setErrpass("");
+              } else {
+                setErrpass("Password is required");
+              }
               setPassword(e.target.value);
             }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSubmit();
+              }
+            }}
           />
+
+          {errpass ? (
+            <span className="text-red-500 block text-xl  items-center h-5 ">
+              {errpass}
+            </span>
+          ) : (
+            <></>
+          )}
         </div>
-        <h2 className="text-xl sm:text-base text-end text-black sm:text-gray-500  ml-4  mt-4 hover:text-blue-500 hover:cursor-pointer ">
+        <h2 className="text-xl sm:text-lg text-end text-black sm:text-gray-500  ml-4  mt-2 hover:text-blue-500 hover:cursor-pointer ">
           Forget password?
         </h2>
       </div>
@@ -92,7 +127,7 @@ function Login() {
     return (
       <>
         <button
-          className="block border-none rounded-[50px]  w-[60%] mx-auto text-xl text-white font-semibold bg-gradient-to-r from-blue-400  to-pink-400 hover:opacity-70 mt-10 sm:mt-10 lg:text-lg lg:py-[3px] lg:mt-3 xl:mt-8 2xl:mt-10 xl: py-[5px]"
+          className="block border-none rounded-[50px]  w-[60%] mx-auto text-xl text-white font-semibold bg-gradient-to-r from-blue-400  to-pink-400 hover:opacity-70 mt-10 sm:mt-10 lg:text-lg lg:py-[3px] lg:mt-2 xl:mt-5 2xl:mt-5 xl:py-[5px]"
           onClick={handleSubmit}
         >
           Login
