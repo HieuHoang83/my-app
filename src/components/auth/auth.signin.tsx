@@ -38,10 +38,10 @@ function Login() {
   const headertitle = () => {
     return (
       <div className="mb-10 sm:mb-0 sm:h-[250px] sm:pt-20 lg:h-[100px] lg:pt-5 xl:mb-4 2xl:h-[120px] 2xl:pt-10 2xl:mb-5">
-        <h1 className="text-4xl font-normal text-start text-blue-500 ml-4 2xl:mb-2">
+        <h1 className="text-white text-6xl sm:text-4xl sm:text-blue-500 font-normal text-start  ml-4 2xl:mb-2">
           Hello,
         </h1>
-        <h2 className="text-4xl font-black text-start text-blue-500 ml-4 sm:mt-4 lg:mt-0">
+        <h2 className="text-white text-6xl sm:text-4xl sm:text-blue-500 font-black text-start  ml-4 sm:mt-4 lg:mt-0">
           Wellcome!
         </h2>
       </div>
@@ -74,7 +74,7 @@ function Login() {
             }}
           />
           {errUser ? (
-            <span className="text-red-500 block text-lg h-7 items-center ">
+            <span className="text-white  text-xl mt-3 mb-0 sm:text-red-500 block  h-7 items-center ">
               {errUser}
             </span>
           ) : (
@@ -84,7 +84,7 @@ function Login() {
         <div className=" mt-4 ml-3 text-base  xl:mt-4 ">
           <label
             htmlFor="Password "
-            className="text-xl  block mb-1  font-semibold md:text-base xl:text-lg  "
+            className="text-xl  block mb-1  font-semibold  md:text-base xl:text-lg  "
           >
             Password
           </label>
@@ -110,7 +110,7 @@ function Login() {
           />
 
           {errpass ? (
-            <span className="text-red-500 block text-xl  items-center h-5 ">
+            <span className=" text-white mt-3 mb-4 sm:text-red-500 block text-xl  items-center h-5 ">
               {errpass}
             </span>
           ) : (
