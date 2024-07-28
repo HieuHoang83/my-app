@@ -66,6 +66,7 @@ export const authOptions: AuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user, account, profile, isNewUser, trigger }) {
+      console.log(user);
       //neu dn bang ben thu 3
       if (trigger === "signIn" && account?.provider !== "credentials") {
         const response = await fetchData(

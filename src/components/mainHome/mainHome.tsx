@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 function MainHome() {
   const { data: session } = useSession();
   //@ts-ignore
+  //sd ->session
   return (
     <div className="  text-6xl items-center justify-center h-main-size relative">
       <div

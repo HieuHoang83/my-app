@@ -10,3 +10,5 @@ export default function RootLayout({
     </PrimeReactProvider>
   );
 }
+//http://localhost:3000/auth/login
+//folder api->auth->[...nextauth]->file
