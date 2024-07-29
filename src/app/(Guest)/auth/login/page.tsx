@@ -1,8 +1,20 @@
-import { authOptions } from "@/app/(User)/api/auth/[...nextauth]/route";
 import Login from "@/components/auth/auth.signin";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import type { Metadata } from "next";
+import { authOptions } from "@/app/(User)/utils/authOptions";
 
+export const metadata: Metadata = {
+  title: "Login page",
+  description: "Đăng nhập ",
+  openGraph: {
+    title: "Login page",
+    description: "Đăng nhập trang website",
+    type: "website",
+    images:
+      "[https://image.freepik.com/free-vector/login-concept-illustration_114360-739.jpg]",
+  },
+};
 export default async function SigninPage() {
   const session = await getServerSession(authOptions);
   if (session) {

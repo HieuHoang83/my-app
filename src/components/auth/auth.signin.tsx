@@ -2,6 +2,9 @@
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Button } from "primereact/button";
+import { Toast } from "primereact/toast";
+import React, { useRef } from "react";
 
 import { useEffect, useState } from "react";
 
@@ -11,12 +14,24 @@ function Login() {
   const [errUser, setErrUser] = useState("");
   const [errpass, setErrpass] = useState("");
   const router = useRouter();
+  const toast = useRef(null);
 
+  const showError = (Message: string) => {
+    //@ts-ignore
+    toast.current.show({
+      severity: "error",
+      summary: "Error",
+      detail: Message,
+      life: 3000,
+    });
+  };
   const handleSubmit = async () => {
     if (errUser && !username) {
+      showError("Please conplete your username and password");
       return;
     }
     if (errpass && !password) {
+      showError("Please conplete your username and password");
       return;
     }
     // Add your logic here to call the server to authenticate the user and handle the response.
@@ -31,7 +46,7 @@ function Login() {
       setPassword("");
       router.push("/");
     } else {
-      setErrpass(res?.error);
+      showError("username or password is not exist");
     }
   };
   const headertitle = () => {
@@ -44,14 +59,14 @@ function Login() {
           <h2 className="text-white text-4xl sm:text-4xl lg:text-3xl sm:text-blue-500 font-black text-start  ml-4 sm:ml-3  sm:mt-2 lg:ml-0 lg:mt-0">
             Wellcome!
           </h2>
-          <p className="text-white text-xl sm:text-lg  w-[380px] sm:text-base sm:text-black sm:w-[300px] ml-4 sm:ml-3 mt-3 h-[40px] block sm:mt-5 lg:mt-0 xl:mt-2 lg:ml-0">
-            Don't have an account?{" "}
+          <p className="text-white text-xl sm:text-lg  w-[380px]  sm:text-black sm:w-[300px] ml-4 sm:ml-3 mt-3 h-[40px] block sm:mt-5 lg:mt-0 xl:mt-2 lg:ml-0">
+            Do not have an account?
             <Link
               href="register"
               className="font-bold text-blue-600 sm:text-blue-500"
             >
               Create Your Acount
-            </Link>{" "}
+            </Link>
             it takes less than a minute
           </p>
         </div>
@@ -183,12 +198,19 @@ function Login() {
 
   return (
     <div className="flex justify-center items-center h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+      <div
+        className="card flex justify-content-center"
+        style={{ height: "30px !important" }}
+      >
+        <Toast ref={toast} position="bottom-right" />
+      </div>
       <div className=" bg-gradient-login-main  sm:bg-none overflow-hidden h-[100vh] w-[100vw] px-10 shadow-lg bg-white rounded-md flex justify-center items-center sm:px-0 sm:items-start lg:items-stretch sm:w-[450px] sm:h-[700px]  lg:w-[800px] lg:h-[530px] lg:grid-cols-2 xl:w-[1000px] xl:h-[600px] 2xl:w-[1300px] 2xl:h-[600px]">
         <div className="">
           {headertitle()}
           {formInput()}
           {footerLogin()}
         </div>
+
         <div className=" ml-10 bg-gradient-to-r from-indigo-500  via-purple-500 to-pink-500 overflow-hidden hidden lg:block w-[50%]">
           {imgright()}
         </div>

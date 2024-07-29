@@ -3,8 +3,9 @@ import axios, { AxiosResponse } from "axios";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Toast } from "primereact/toast";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 async function fetchData(url: string, body: any) {
   // You can await here
   try {
@@ -27,7 +28,17 @@ function Register() {
   const [errpass, setErrpass] = useState("");
   const [errconfirmpass, setErrConfirmPass] = useState("");
   const router = useRouter();
+  const toast = useRef(null);
 
+  const showError = (Message: string) => {
+    //@ts-ignore
+    toast.current.show({
+      severity: "error",
+      summary: "Error",
+      detail: Message,
+      life: 3000,
+    });
+  };
   const handleSubmit = async () => {
     if (errUser.length != 0 || username.length == 0) {
       if (username.length == 0) {
@@ -60,7 +71,7 @@ function Register() {
     );
 
     if (response.error) {
-      setErrUser(response.message);
+      showError(response.message);
       return;
     } else {
       const res = await signIn("credentials", {
@@ -68,7 +79,7 @@ function Register() {
         password: password,
         redirect: false,
       });
-      console.log(res);
+
       if (!res?.error) {
         setUsername("");
         setPassword("");
@@ -257,6 +268,12 @@ function Register() {
 
   return (
     <div className="flex justify-center items-center h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+      <div
+        className="card flex justify-content-center"
+        style={{ height: "30px !important" }}
+      >
+        <Toast ref={toast} position="bottom-right" />
+      </div>
       <div className=" bg-gradient-login-main  sm:bg-none  h-[100vh] w-[100vw] overflow-hidden pb-10 md:pb-0 shadow-lg bg-white rounded-md flex justify-center items-center sm:items-start lg:items-stretch sm:w-[450px] sm:h-[700px]  lg:w-[800px] lg:h-[530px] lg:grid-cols-2 xl:w-[1000px] xl:h-[600px] 2xl:w-[1300px] 2xl:h-[600px]">
         <div className="">
           {headertitle()}

@@ -4,12 +4,13 @@ import { useSession } from "next-auth/react";
 
 function MainHome() {
   const { data: session } = useSession();
+
   //@ts-ignore
   //sd ->session
   return (
     <div className="  text-6xl items-center justify-center h-main-size relative">
       <div
-        className="bg-no-repeat bg-clip-border bg-cover brightness-55 absolute w-[100vw] h-[100vh]"
+        className="bg-no-repeat bg-clip-border bg-center bg-cover brightness-55 absolute w-[100vw] h-[100vh]"
         style={{
           backgroundImage:
             "url(https://hanoispiritofplace.com/wp-content/uploads/2017/12/hinh-anh-hoa-anh-dao-29.jpg) ",
