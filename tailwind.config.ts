@@ -23,6 +23,9 @@ const config: Config = {
         "main-size": "100vh",
       },
       fontSize: {},
+      colors: {
+        textPink: "rgb(255 120 120)",
+      },
     },
   },
   plugins: [],

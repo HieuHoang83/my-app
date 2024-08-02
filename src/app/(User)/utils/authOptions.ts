@@ -18,6 +18,34 @@ async function fetchData(url: string, body: any) {
     };
   }
 }
+async function GetUser(url: string, body: any) {
+  // You can await here
+  try {
+    const response: AxiosResponse = await axios.get(url, body);
+
+    return response.data;
+  } catch (error: any) {
+    return {
+      statusCode: error?.response?.data?.statusCode ?? 400,
+      error: error?.response?.data?.error ?? "error",
+      message: error?.response?.data?.message ?? "message",
+    };
+  }
+}
+async function resetToken(url: string, body: any) {
+  // You can await here
+  try {
+    const response: AxiosResponse = await axios.post(url, body);
+
+    return response.data;
+  } catch (error: any) {
+    return {
+      statusCode: error?.response?.data?.statusCode ?? 400,
+      error: error?.response?.data?.error ?? "error",
+      message: error?.response?.data?.message ?? "message",
+    };
+  }
+}
 export const authOptions: AuthOptions = {
   // Configure one or more authentication providers
   secret: process.env.NO_SECRET,
@@ -60,8 +88,9 @@ export const authOptions: AuthOptions = {
 
     // ...add more providers here
   ],
+
   callbacks: {
-    async jwt({ token, user, account, profile, isNewUser, trigger }) {
+    async jwt({ token, user, account, trigger, session }) {
       //neu dn bang ben thu 3
       if (trigger === "signIn" && account?.provider !== "credentials") {
         const response = await fetchData(
@@ -82,28 +111,65 @@ export const authOptions: AuthOptions = {
         }
       }
       //neu dn bang tk mk
-      if (trigger === "signIn" && account?.provider === "credentials") {
+      else if (trigger === "signIn" && account?.provider === "credentials") {
         //@ts-ignore
         token.access_token = user?.access_token;
         //@ts-ignore
         token.user = user?.user;
         //@ts-ignore
         token.refreshToken = user?.refreshToken;
+      } else if (trigger === "update" && session?.name) {
+        // Note, that `session` can be any arbitrary object, remember to validate it!
+
+        token.user.name = session.name;
+      } else {
+        //get user info
+        // console.log();
+
+        const response = await GetUser(
+          "http://localhost:8000/api/v1/auth/account",
+          {
+            headers: {
+              Authorization: `Bearer ${token.access_token}`,
+            },
+          }
+        );
+
+        if (!response.error) {
+          token.user = response.data.user;
+        } else {
+          const responseReset = await resetToken(
+            "http://localhost:8000/api/v1/auth/refresh",
+            {
+              refreshToken: token.refreshToken,
+              accessToken: token.access_token,
+            }
+          );
+          if (!responseReset.error) {
+            token.user = responseReset.data.user;
+            token.access_token = responseReset.data.access_token;
+          } else {
+            throw new Error(responseReset.message);
+          }
+        }
       }
-      //return token ve cho session ben duoi
       return token;
     },
-    async session({ session, user, token }) {
+    async session({ session, user, token, trigger, newSession }) {
       if (token) {
         if (token.access_token || token.refresh_token || token.user) {
-          session.access_token = token.access_token;
-          session.user = token.user;
-          session.refreshToken = token.refreshToken;
-
-          return session;
-        } else {
-          throw new Error("loi k xac dinh");
+          if (token.access_token) {
+            session.access_token = token.access_token;
+          }
+          if (token.user) {
+            session.user = token.user;
+          }
+          if (token.refreshToken) {
+            session.refreshToken = token.refreshToken;
+          }
         }
+        //console.log("session", session);
+        return session;
       } else {
         throw new Error("loi k xac dinh");
       }
