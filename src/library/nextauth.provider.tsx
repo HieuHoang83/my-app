@@ -6,5 +6,7 @@ export default function NextAuthWrapper({
 }: {
   children: React.ReactNode;
 }) {
-  return <SessionProvider refetchInterval={5}>{children}</SessionProvider>;
+  return (
+    <SessionProvider refetchInterval={5 * 600}>{children}</SessionProvider>
+  );
 }
