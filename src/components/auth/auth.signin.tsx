@@ -5,9 +5,10 @@ import { useRouter } from "next/navigation";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
 import React, { useRef } from "react";
-
+import logo from "../../../public/image/login.png"; // with import
 import { useEffect, useState } from "react";
-
+import Image from "next/image";
+import SwitchButton from "../switchbtn/switch.btn";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +16,6 @@ function Login() {
   const [errpass, setErrpass] = useState("");
   const router = useRouter();
   const toast = useRef(null);
-
   const showError = (Message: string) => {
     //@ts-ignore
     toast.current.show({
@@ -25,6 +25,7 @@ function Login() {
       life: 3000,
     });
   };
+
   const handleSubmit = async () => {
     if (errUser && !username) {
       showError("Please conplete your username and password");
@@ -51,26 +52,26 @@ function Login() {
   };
   const headertitle = () => {
     return (
-      <>
-        <div className="pl-5 pt-0 h-[160px] sm:pl-3 sm:pl-0 sm:mb-0 sm:h-[240px] sm:pt-6 lg:h-[165px]  lg:pt-3 xl:mb-4 xl:ml-0 xl:h-[180px] 2xl:pt-4 2xl:mb-5 ">
-          <h1 className="text-white text-4xl  sm:text-blue-500 font-normal text-start  ml-4  sm:ml-3 sm:text-4xl lg:ml-0 lg:text-3xl 2xl:mb-2">
+      <div>
+        <div className=" pl-5 pt-0 h-[160px] sm:pl-3 sm:pl-0 sm:mb-0 sm:h-[240px] sm:pt-6 lg:h-[165px]  lg:pt-3 xl:mb-4 xl:ml-0 xl:h-[180px] 2xl:pt-4 2xl:mb-5 ">
+          <h1 className="text-white text-4xl  sm:text-blue-500  font-normal text-start  ml-4  sm:ml-3 sm:text-4xl lg:ml-0 lg:text-3xl 2xl:mb-2">
             Hello,
           </h1>
           <h2 className="text-white text-4xl sm:text-4xl lg:text-3xl sm:text-blue-500 font-black text-start  ml-4 sm:ml-3  sm:mt-2 lg:ml-0 lg:mt-0">
             Wellcome!
           </h2>
-          <p className="text-white text-xl sm:text-lg  w-[380px]  sm:text-black sm:w-[300px] ml-4 sm:ml-3 mt-3 h-[40px] block sm:mt-5 lg:mt-0 xl:mt-2 lg:ml-0">
+          <p className="text-white text-xl sm:text-lg  w-[380px] sm:dark:text-white sm:text-black sm:w-[300px] ml-4 sm:ml-3 mt-3 h-[40px] block sm:mt-5 lg:mt-0 xl:mt-2 lg:ml-0">
             Do not have an account?
             <Link
               href="register"
-              className="font-bold text-blue-600 sm:text-blue-500"
+              className="font-bold text-blue-600 sm:text-blue-500 pl-1 pr-1"
             >
               Create Your Acount
             </Link>
             it takes less than a minute
           </p>
         </div>
-      </>
+      </div>
     );
   };
   const formInput = () => {
@@ -79,7 +80,7 @@ function Login() {
         <div className="xl:mt-7 ml-3 w-full  pl-7 pr-14 sm:px-0">
           <label
             htmlFor="Username"
-            className="text-lg sm:text-base font-semibold block mb-1 xl:text-base  "
+            className="text-lg sm:text-base font-semibold block mb-1 xl:text-base sm:dark:text-white "
           >
             Email
           </label>
@@ -107,7 +108,7 @@ function Login() {
         <div className="sm:mt-4 lg:mt-3 ml-3 w-full xl:mt-[6px] pl-7 pr-14 sm:px-0">
           <label
             htmlFor="Password "
-            className="text-lg sm:text-base block mb-1  font-semibold  xl:text-base  "
+            className="text-lg sm:text-base sm:dark:text-white block mb-1  font-semibold  xl:text-base  "
           >
             Password
           </label>
@@ -136,7 +137,7 @@ function Login() {
             {errpass}
           </span>
         </div>
-        <h2 className=" w-[85%] sm:w-full text-xl sm:text-lg text-end  text-black sm:text-gray-500  ml-4 mt-[10px] xl:mt-1 hover:text-blue-500 hover:cursor-pointer ">
+        <h2 className=" w-[85%] sm:w-full text-xl sm:text-lg text-end sm:dark:text-white text-black sm:text-gray-500  ml-4 mt-[10px] xl:mt-1 hover:text-blue-500 hover:cursor-pointer ">
           Forget password?
         </h2>
       </div>
@@ -151,7 +152,7 @@ function Login() {
         >
           Login
         </button>
-        <div className=" flex justify-center text-center text-lg text-white font-medium flex-col mt-10   sm:text-black sm:mt-8 lg:mt-3 xl:mt-5 2xl:10">
+        <div className=" flex justify-center text-center text-lg text-white font-medium flex-col mt-10  sm:dark:text-white  sm:text-black sm:mt-8 lg:mt-3 xl:mt-5 2xl:10">
           <h2>Or Sign Up Using</h2>
           <div className="mt-3 xl:mt-5 flex justify-center">
             <button
@@ -187,32 +188,51 @@ function Login() {
   const imgright = () => {
     return (
       <>
-        <img
-          src="https://image.freepik.com/free-vector/login-concept-illustration_114360-739.jpg"
-          className="w-[100%] h-full xl:object-cover"
-          alt=""
-        />
+        <Image src={logo} className="w-[100%] h-full xl:object-cover" alt="" />
       </>
     );
   };
+  const [theme, setTheme] = useState("light");
 
+  useEffect(() => {
+    // Lấy theme từ Local Storage khi component được mount
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      setTheme(storedTheme);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    console.log("old", theme);
+    const newTheme = theme === "light" ? "dark" : "light";
+    console.log("new", newTheme);
+
+    localStorage.setItem("theme", newTheme);
+    setTheme(newTheme);
+  };
   return (
-    <div className="flex justify-center items-center h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
-      <div
-        className="card flex justify-content-center"
-        style={{ height: "30px !important" }}
-      >
-        <Toast ref={toast} position="bottom-right" />
-      </div>
-      <div className=" bg-gradient-login-main  sm:bg-none overflow-hidden h-[100vh] w-[100vw] px-10 shadow-lg bg-white rounded-md flex justify-center items-center sm:px-0 sm:items-start lg:items-stretch sm:w-[450px] sm:h-[700px]  lg:w-[800px] lg:h-[530px] lg:grid-cols-2 xl:w-[1000px] xl:h-[600px] 2xl:w-[1300px] 2xl:h-[600px]">
-        <div className="">
-          {headertitle()}
-          {formInput()}
-          {footerLogin()}
+    <div className={`${theme} `}>
+      <div className="flex justify-center items-center h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-800 dark:to-gray-800 ">
+        <div
+          className="card flex justify-content-center"
+          style={{ height: "30px !important" }}
+        >
+          <Toast ref={toast} position="bottom-right" />
         </div>
 
-        <div className=" ml-10 bg-gradient-to-r from-indigo-500  via-purple-500 to-pink-500 overflow-hidden hidden lg:block w-[50%]">
-          {imgright()}
+        <div className="relative dark:bg-gray-600 bg-gradient-login-main  sm:bg-none overflow-hidden h-[100vh] w-[100vw] px-10 shadow-lg bg-white rounded-md flex justify-center items-center sm:px-0 sm:items-start lg:items-stretch sm:w-[450px] sm:h-[700px]  lg:w-[800px] lg:h-[530px] lg:grid-cols-2 xl:w-[1000px] xl:h-[600px] 2xl:w-[1300px] 2xl:h-[600px]">
+          <div className="">
+            {headertitle()}
+            {formInput()}
+
+            {footerLogin()}
+          </div>
+          <div className=" ml-10 dark:bg-gray-600 overflow-hidden hidden lg:block w-[50%]">
+            {imgright()}
+          </div>
+          <div className="absolute top-[15px] right-4">
+            <SwitchButton toggleTheme={toggleTheme} />
+          </div>
         </div>
       </div>
     </div>

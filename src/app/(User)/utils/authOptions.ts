@@ -168,7 +168,6 @@ export const authOptions: AuthOptions = {
             session.refreshToken = token.refreshToken;
           }
         }
-        //console.log("session", session);
         return session;
       } else {
         throw new Error("loi k xac dinh");

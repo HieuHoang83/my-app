@@ -14,23 +14,9 @@ function MainHome() {
         className="bg-no-repeat bg-clip-border bg-center bg-cover brightness-55 absolute w-[100vw] h-[100vh]"
         style={{
           backgroundImage:
-            "url(https://hanoispiritofplace.com/wp-content/uploads/2017/12/hinh-anh-hoa-anh-dao-29.jpg) ",
+            "url(https://img.freepik.com/premium-photo/explore-world-through-delectable-culinary-diversity_128650-5522.jpg) ",
         }}
       ></div>
-
-      <div className=" brightness-100 flex flex-col text-4xl items-center justify-center h-main-size sm:flex-row sm:text-4xl md:text-5xl lg:text-6xl ">
-        {session ? (
-          <h1 className="text-white font-semibold sm:mb-0 mb-3">
-            {session?.user?.name}
-          </h1>
-        ) : (
-          <>
-            <h1 className="bg-clip-text text-transparent bg-gradient-to-r from-[#d958ca]  to-[#B5FFFC]  font-semibold sm:mb-0 mb-3 translate-y-[-200%]">
-              WELLCOME TO OUR WEBSIDE
-            </h1>
-          </>
-        )}
-      </div>
     </div>
   );
 }

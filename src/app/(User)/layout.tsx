@@ -4,11 +4,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <PrimeReactProvider value={{ unstyled: true }}>
-      {children}
-    </PrimeReactProvider>
-  );
+  return <> {children}</>;
 }
 //http://localhost:3000/auth/login
 //folder api->auth->[...nextauth]->file
