@@ -5,10 +5,11 @@ import { useRouter } from "next/navigation";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
 import React, { useRef } from "react";
-import logo from "../../../public/image/login.png"; // with import
+import logo from "../../../public/image/login.webp"; // with import
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import SwitchButton from "../switchbtn/switch.btn";
+import { useThemeContext } from "@/library/ThemeProvider";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -192,26 +193,8 @@ function Login() {
       </>
     );
   };
-  const [theme, setTheme] = useState("light");
-
-  useEffect(() => {
-    // Lấy theme từ Local Storage khi component được mount
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme) {
-      setTheme(storedTheme);
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    console.log("old", theme);
-    const newTheme = theme === "light" ? "dark" : "light";
-    console.log("new", newTheme);
-
-    localStorage.setItem("theme", newTheme);
-    setTheme(newTheme);
-  };
   return (
-    <div className={`${theme} `}>
+    <div>
       <div className="flex justify-center items-center h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-800 dark:to-gray-800 ">
         <div
           className="card flex justify-content-center"
@@ -231,7 +214,7 @@ function Login() {
             {imgright()}
           </div>
           <div className="absolute top-[15px] right-4">
-            <SwitchButton toggleTheme={toggleTheme} />
+            <SwitchButton />
           </div>
         </div>
       </div>

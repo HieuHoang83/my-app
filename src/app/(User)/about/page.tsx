@@ -1,34 +1,18 @@
 "use client";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../utils/authOptions";
+
 import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Loading from "@/components/Loadingpage/loading";
 import NavigateHome from "@/components/Home/header/header";
 import { useEffect, useState } from "react";
+import { useThemeContext } from "@/library/ThemeProvider";
 
 function BV() {
   const { status } = useSession({
     required: false,
   });
-  const [theme, setTheme] = useState("light");
 
-  useEffect(() => {
-    // Lấy theme từ Local Storage khi component được mount
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme) {
-      setTheme(storedTheme);
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    console.log("old", theme);
-    const newTheme = theme === "light" ? "dark" : "light";
-    console.log("new", newTheme);
-
-    localStorage.setItem("theme", newTheme);
-    setTheme(newTheme);
-  };
   let listItem = [
     {
       title: "Pasta Perfection",
@@ -69,7 +53,7 @@ function BV() {
   ];
   const Title = () => {
     return (
-      <section className="py-20 px-24 dark:bg-[#7d8083] text-black dark:text-gray-200">
+      <section className="py-20 px-24 dark:bg-[#7d8083] text-black dark:text-gray-200 bg-[#ffc289b5]">
         <div className="container mx-auto">
           <div className="grid grid-cols-5 gap-4 ">
             <div className="col-span-3">
@@ -85,13 +69,13 @@ function BV() {
               <div className="flex flex-col justify-start">
                 <a
                   href="#menu"
-                  className="bg-gray-500 hover:bg-gray-600 dark:bg-[#404040] dark:hover:bg-[#2c2a2a] text-white font-bold py-2 px-2 rounded inline-block w-[170px]"
+                  className="bg-[#ee913a] hover:bg-[#ee913ac0] dark:bg-[#404040] dark:hover:bg-[#2c2a2a] text-white font-bold py-2 px-2 rounded inline-block w-[170px]"
                 >
                   View Our Menu
                 </a>
                 <a
                   href="#contact"
-                  className="mt-5 bg-gray-500 hover:bg-gray-600 dark:bg-[#404040] dark:hover:bg-[#2c2a2a] text-white font-bold py-2 px-4 rounded inline-block w-[170px]"
+                  className="mt-5 bg-[#ee913a] hover:bg-[#ee913ac0] dark:bg-[#404040] dark:hover:bg-[#2c2a2a] text-white font-bold py-2 px-4 rounded inline-block w-[170px]"
                 >
                   Contact Us
                 </a>
@@ -120,7 +104,7 @@ function BV() {
   };
   const Itemcard = (imgUrl: any, name: any, description: any) => {
     return (
-      <div className="bg-gray-100 dark:bg-[#14060621] rounded-lg shadow-md p-6 text-center">
+      <div className="bg-[#ffc2894d] dark:bg-[#14060621] rounded-lg shadow-md p-6 text-center">
         <img
           src={imgUrl}
           alt={name}
@@ -133,7 +117,10 @@ function BV() {
   };
   const Menu = () => {
     return (
-      <section className="bg-white py-20 px-24 dark:bg-[#8f9195]" id="menu">
+      <section
+        className="bg-[#ffc28978] py-20 px-24 dark:bg-[#8f9195]"
+        id="menu"
+      >
         <div className="container mx-auto">
           <h2 className="text-4xl font-bold text-center mb-8 dark:text-gray-200">
             Our Specialties
@@ -150,7 +137,7 @@ function BV() {
   const Contact = () => {
     return (
       <section
-        className="bg-gray-100 py-20 px-24 dark:bg-[#888a8c] "
+        className="bg-gray-100 py-20 px-24 dark:bg-[#888a8c] bg-[#ffc289b5]"
         id="contact"
       >
         <div className="container mx-auto">
@@ -216,9 +203,9 @@ function BV() {
       {status === "loading" ? (
         <Loading />
       ) : (
-        <div className={theme}>
-          <NavigateHome transparent={"show"} toggleTheme={toggleTheme} />
-          <div className=" text-gray-800 font-body mt-[80px]">
+        <div>
+          <NavigateHome />
+          <div className=" text-gray-800 font-body mt-[80px] ">
             <Title />
             <Menu />
 

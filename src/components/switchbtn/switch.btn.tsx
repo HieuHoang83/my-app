@@ -1,28 +1,21 @@
 "use client";
+import { useThemeContext } from "@/library/ThemeProvider";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-function SwitchButton({ toggleTheme }: { toggleTheme: any }) {
-  let storedTheme: string | null = null;
-  if (typeof window !== "undefined" && window.localStorage) {
-    storedTheme = window.localStorage.getItem("theme");
-  }
-
-  const inputRef = useRef<HTMLInputElement>(null);
+function SwitchButton() {
+  const { toggleTheme } = useThemeContext();
 
   const handleClick = useCallback(() => {
-    if (inputRef) {
-      if (inputRef.current) {
-        inputRef.current.checked = !inputRef.current.checked; // Hoạt động bình thường
-        toggleTheme();
-      }
-    }
+    toggleTheme();
     //@ts-ignore
-  }, [inputRef, toggleTheme]);
+  }, [toggleTheme]);
   return (
-    <div className={`relative flex items-center ml-4  w-14`}>
+    <div
+      className={`relative flex items-center ml-4  w-14`}
+      onClick={handleClick}
+    >
       <span
         className={`sun absolute  right-[8px] z-10 dark:hidden block cursor-pointer`}
-        onClick={handleClick}
       >
         <i
           className="pi pi-sun"
@@ -32,7 +25,6 @@ function SwitchButton({ toggleTheme }: { toggleTheme: any }) {
 
       <span
         className={`moon absolute  left-[7px] z-10 dark:block hidden cursor-pointer`}
-        onClick={handleClick}
       >
         <i
           className="pi pi-moon"
@@ -43,16 +35,7 @@ function SwitchButton({ toggleTheme }: { toggleTheme: any }) {
         htmlFor="switch"
         className="inline-flex relative items-center cursor-pointer"
       >
-        <input
-          type="checkbox"
-          value=""
-          id="switch"
-          className="sr-only peer"
-          ref={inputRef}
-          checked={storedTheme === "dark"}
-          onClick={handleClick}
-        />
-        <div className="relative  w-14 h-6  rounded-full  bg-orange-400 peer-checked:after:translate-x-[145%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[3px] after:bg-white  after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-gray-400 "></div>
+        <div className="relative  w-14 h-6  rounded-full  bg-orange-400 dark:after:translate-x-[145%] dark:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[3px] after:bg-white  after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  dark:bg-gray-400 "></div>
       </label>
     </div>
   );

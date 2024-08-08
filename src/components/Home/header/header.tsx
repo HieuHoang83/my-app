@@ -8,6 +8,7 @@ import { Toast } from "primereact/toast";
 import { useEffect, useRef, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import SwitchButton from "@/components/switchbtn/switch.btn";
+import { useThemeContext } from "@/library/ThemeProvider";
 async function fetchData(url: string, body: any) {
   // You can await here
   try {
@@ -23,13 +24,7 @@ async function fetchData(url: string, body: any) {
   }
 }
 type Callback = () => void;
-function NavigateHome({
-  transparent,
-  toggleTheme,
-}: {
-  transparent: string;
-  toggleTheme: Callback;
-}) {
+function NavigateHome() {
   const { data: session, status, update } = useSession();
   //@ts-ignore
 
@@ -66,14 +61,14 @@ function NavigateHome({
         >
           Setting
         </button>
-        <div className="setting-menu hidden bg-white dark:bg-[#c9c8c8] shadow-lg  rounded-l-md rounded-b-md  fixed top-[80px] right-0 w-[170px] overflow-hidden">
+        <div className="setting-menu hidden bg-white dark:bg-[#c9c8c8] shadow-lg  rounded-l-md rounded-b-md  fixed top-[70px] right-0 w-[170px] overflow-hidden">
           <h3 className="text-lg font-medium  border-b dark:border-[#686868] px-3 py-1 text-center cursor-default">
             Setting Options
           </h3>
           <ul className=" ">
             <li className="text-lg pl-5 border-b dark:border-[#686868] flex items-center">
               <div>Them</div>
-              <SwitchButton toggleTheme={toggleTheme} />
+              <SwitchButton />
             </li>
             <li className="text-lg pl-5 border-b dark:border-[#686868]  ">
               Option 3
@@ -100,58 +95,28 @@ function NavigateHome({
       </div>
     );
   };
-  if (transparent != "show") {
-    return (
-      <header>
-        <div className="flex z-50 items-center h-[80px] fixed top-0 left-0 right-0 brightness-70 ">
-          <div className="flex text-xl mr-8 items-center relative w-full sm:ml-auto md:text-2xl md:justify-end lg:text-3xl  ">
-            <Link
-              className="text-white font-medium sm:ml-3 md:ml-8  ml-2"
-              href="/"
-            >
-              Home
-            </Link>
-            <Link
-              className="text-white font-medium sm:ml-3 md:ml-8  ml-2"
-              href="/about"
-            >
-              About
-            </Link>
-            <button
-              className="text-white font-medium sm:ml-3 md:ml-8  ml-2 "
-              onClick={() => update({ name: "John Doe" })}
-            >
-              Edit name
-            </button>
 
-            <Setting isShow={true} />
-          </div>
+  return (
+    <header>
+      <div className="flex z-50 items-center h-[80px] fixed top-0 left-0 right-0  bg-[#ffc289] dark:bg-[#9e9e9e]">
+        <div className="flex text-xl mr-8 items-center relative w-full sm:ml-auto md:text-2xl md:justify-end lg:text-3xl  ">
+          <Link
+            className="text-black font-medium sm:ml-3 md:ml-8  ml-2 dark:text-gray-200"
+            href="/"
+          >
+            Home
+          </Link>
+          <Link
+            className="text-black dark:text-gray-200 font-medium sm:ml-3 md:ml-8  ml-2"
+            href="/about"
+          >
+            About
+          </Link>
+          <Setting />
         </div>
-      </header>
-    );
-  } else {
-    return (
-      <header>
-        <div className="flex z-50 items-center h-[80px] fixed top-0 left-0 right-0  bg-gray-200 dark:bg-gray-700">
-          <div className="flex text-xl mr-8 items-center relative w-full sm:ml-auto md:text-2xl md:justify-end lg:text-3xl  ">
-            <Link
-              className="text-black font-medium sm:ml-3 md:ml-8  ml-2 dark:text-gray-200"
-              href="/"
-            >
-              Home
-            </Link>
-            <Link
-              className="text-black dark:text-gray-200 font-medium sm:ml-3 md:ml-8  ml-2"
-              href="/about"
-            >
-              About
-            </Link>
-            <Setting />
-          </div>
-        </div>
-      </header>
-    );
-  }
+      </div>
+    </header>
+  );
 }
 
 export default NavigateHome;
