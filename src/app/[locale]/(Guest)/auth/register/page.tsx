@@ -3,7 +3,7 @@ import Register from "@/components/auth/auth.register";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
-import { authOptions } from "@/app/(User)/utils/authOptions";
+import { authOptions } from "@/app/utils/authOptions";
 
 export const metadata: Metadata = {
   title: "Register page",

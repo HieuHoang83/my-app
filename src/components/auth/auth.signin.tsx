@@ -8,8 +8,10 @@ import React, { useRef } from "react";
 import logo from "../../../public/image/login.webp"; // with import
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import SwitchButton from "../switchbtn/switch.btn";
+import SwitchTheme from "../switchbtn/switch.btn";
 import { useThemeContext } from "@/library/ThemeProvider";
+import LocalSwitcher from "../SwitchLangue/switcherLangue";
+import { useTranslations } from "next-intl";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +19,8 @@ function Login() {
   const [errpass, setErrpass] = useState("");
   const router = useRouter();
   const toast = useRef(null);
+  const t = useTranslations("LoginPage");
+
   const showError = (Message: string) => {
     //@ts-ignore
     toast.current.show({
@@ -62,14 +66,14 @@ function Login() {
             Wellcome!
           </h2>
           <p className="text-white text-xl sm:text-lg  w-[380px] sm:dark:text-white sm:text-black sm:w-[300px] ml-4 sm:ml-3 mt-3 h-[40px] block sm:mt-5 lg:mt-0 xl:mt-2 lg:ml-0">
-            Do not have an account?
+            {t("title1")}
             <Link
               href="register"
               className="font-bold text-blue-600 sm:text-blue-500 pl-1 pr-1"
             >
-              Create Your Acount
+              {t("title2")}
             </Link>
-            it takes less than a minute
+            {t("title3")}
           </p>
         </div>
       </div>
@@ -139,7 +143,7 @@ function Login() {
           </span>
         </div>
         <h2 className=" w-[85%] sm:w-full text-xl sm:text-lg text-end sm:dark:text-white text-black sm:text-gray-500  ml-4 mt-[10px] xl:mt-1 hover:text-blue-500 hover:cursor-pointer ">
-          Forget password?
+          {t("forget")}
         </h2>
       </div>
     );
@@ -154,7 +158,7 @@ function Login() {
           Login
         </button>
         <div className=" flex justify-center text-center text-lg text-white font-medium flex-col mt-10  sm:dark:text-white  sm:text-black sm:mt-8 lg:mt-3 xl:mt-5 2xl:10">
-          <h2>Or Sign Up Using</h2>
+          <h2>{t("Or Sign Up")}</h2>
           <div className="mt-3 xl:mt-5 flex justify-center">
             <button
               className="mr-3 scale-125 sm:scale-100"
@@ -214,7 +218,10 @@ function Login() {
             {imgright()}
           </div>
           <div className="absolute top-[15px] right-4">
-            <SwitchButton />
+            <SwitchTheme />
+          </div>
+          <div className="absolute top-[55px] right-4">
+            <LocalSwitcher />
           </div>
         </div>
       </div>

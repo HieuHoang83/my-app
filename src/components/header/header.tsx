@@ -7,8 +7,11 @@ import { Menu } from "primereact/menu";
 import { Toast } from "primereact/toast";
 import { useEffect, useRef, useState } from "react";
 import axios, { AxiosResponse } from "axios";
-import SwitchButton from "@/components/switchbtn/switch.btn";
+import SwitchTheme from "@/components/switchbtn/switch.btn";
 import { useThemeContext } from "@/library/ThemeProvider";
+import LocalSwitcher from "../SwitchLangue/switcherLangue";
+import { usePathname, useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
 async function fetchData(url: string, body: any) {
   // You can await here
   try {
@@ -27,7 +30,8 @@ type Callback = () => void;
 function NavigateHome() {
   const { data: session, status, update } = useSession();
   //@ts-ignore
-
+  const localActive = useLocale();
+  let current = usePathname();
   const handleLogout = async () => {
     const response = await fetchData(
       "http://localhost:8000/api/v1/auth/logout",
@@ -61,18 +65,18 @@ function NavigateHome() {
         >
           Setting
         </button>
-        <div className="setting-menu hidden bg-white dark:bg-[#c9c8c8] shadow-lg  rounded-l-md rounded-b-md  fixed top-[70px] right-0 w-[170px] overflow-hidden">
-          <h3 className="text-lg font-medium  border-b dark:border-[#686868] px-3 py-1 text-center cursor-default">
+        <div className="setting-menu hidden  bg-white dark:bg-[#4b5563] dark:border shadow-lg  rounded-l-md rounded-b-md  fixed top-[80px] right-[1px] w-[180px] overflow-hidden">
+          <h3 className="text-lg font-medium dark:text-gray-200 border-b  px-3 py-[4px]  cursor-default">
             Setting Options
           </h3>
           <ul className=" ">
-            <li className="text-lg pl-5 border-b dark:border-[#686868] flex items-center">
-              <div>Them</div>
-              <SwitchButton />
+            <li className="text-lg py-[5px] flex justify-end items-end border-b pr-3">
+              <SwitchTheme />
             </li>
-            <li className="text-lg pl-5 border-b dark:border-[#686868]  ">
-              Option 3
+            <li className="text-lg py-[4px] pl-4 border-b pr-3">
+              <LocalSwitcher></LocalSwitcher>
             </li>
+
             <li className=" border-b text-lg w-full ">
               {session ? (
                 <button
@@ -83,7 +87,7 @@ function NavigateHome() {
                 </button>
               ) : (
                 <Link
-                  href="/auth/login"
+                  href={`/${localActive}/auth/login`}
                   className="block w-full bg-[#cccccc65] hover:bg-[#cccccc48] dark:hover:bg-[#35323243] text-center py-1"
                 >
                   Sign up
@@ -108,9 +112,9 @@ function NavigateHome() {
           </Link>
           <Link
             className="text-black dark:text-gray-200 font-medium sm:ml-3 md:ml-8  ml-2"
-            href="/about"
+            href={`/${localActive}/menu`}
           >
-            About
+            Menu
           </Link>
           <Setting />
         </div>

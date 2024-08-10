@@ -7,8 +7,10 @@ import { Toast } from "primereact/toast";
 import logo from "../../../public/image/register.webp"; // with import
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import SwitchButton from "../switchbtn/switch.btn";
+import SwitchTheme from "../switchbtn/switch.btn";
 import { useThemeContext } from "@/library/ThemeProvider";
+import { useTranslations } from "next-intl";
+import LocalSwitcher from "../SwitchLangue/switcherLangue";
 async function fetchData(url: string, body: any) {
   // You can await here
   try {
@@ -32,7 +34,7 @@ function Register() {
   const [errconfirmpass, setErrConfirmPass] = useState("");
   const router = useRouter();
   const toast = useRef(null);
-
+  const t = useTranslations("RegisterPage");
   const showError = (Message: string) => {
     //@ts-ignore
     toast.current.show({
@@ -110,12 +112,12 @@ function Register() {
           className="text-white text-xl w-[380px]  ml-5 mt-3 h-[40px] block sm:ml-4  sm:mt-5 sm:text-base sm:text-black sm:dark:text-white
           sm:w-[300px] lg:mt-0 xl:mt-2"
         >
-          If you have an account?{" "}
+          {t("title1")}
           <Link
             href="login"
             className="font-bold text-blue-600 sm:text-blue-500"
           >
-            Login now
+            {t("title2")}
           </Link>{" "}
         </p>
       </div>
@@ -284,7 +286,10 @@ function Register() {
             {imgright()}
           </div>
           <div className="absolute top-[15px] right-4">
-            <SwitchButton />
+            <SwitchTheme />
+          </div>
+          <div className="absolute top-[55px] right-4">
+            <LocalSwitcher />
           </div>
         </div>
       </div>

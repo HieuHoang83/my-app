@@ -6,6 +6,7 @@ import {
   useState,
   useContext,
 } from "react";
+import Loading from "@/components/Loadingpage/loading";
 export interface ThemeContextInterface {
   theme: string;
   toggleTheme: () => any;
@@ -18,12 +19,13 @@ type Props = {
 
 export default function ThemeProvider({ children }: Props) {
   const [theme, setTheme] = useState("light");
-
+  const [isloading, setIsloading] = useState(true);
   useEffect(() => {
     // Lấy theme từ Local Storage khi component được mount
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme) {
       setTheme(storedTheme);
+      setIsloading(false);
     }
   }, []);
 
@@ -43,7 +45,7 @@ export default function ThemeProvider({ children }: Props) {
         toggleTheme,
       }}
     >
-      {children}
+      {isloading ? <Loading /> : children}
     </ThemeContext.Provider>
   );
 }
