@@ -1,6 +1,11 @@
 import Link from "next/link";
 
-function Test() {
+async function Test() {
+  await new Promise((resolve) =>
+    setTimeout(() => {
+      resolve(true);
+    }, 1500)
+  );
   return (
     <div className="h-[300px] w-[300px] bg-gray-300 flex items-center justify-center ">
       children B
