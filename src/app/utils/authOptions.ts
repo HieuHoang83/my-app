@@ -48,7 +48,7 @@ async function resetToken(url: string, body: any) {
 }
 export const authOptions: AuthOptions = {
   // Configure one or more authentication providers
-  secret: process.env.NO_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
 
   providers: [
     //su ly dl cho callback jwt

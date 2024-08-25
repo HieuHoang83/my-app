@@ -8,6 +8,7 @@ import NavigateHome from "@/components/header/header";
 import { useEffect, useState } from "react";
 import { useThemeContext } from "@/library/ThemeProvider";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 function MenuPage() {
   const { status } = useSession({
@@ -47,6 +48,7 @@ function MenuPage() {
       description: t("Crunchy Thai Salad"),
     },
   ];
+
   const Title = () => {
     return (
       <section className="py-28 px-24 dark:bg-[#7d8083] text-black bg-[#ffc289b5]">
@@ -97,7 +99,7 @@ function MenuPage() {
   };
   const Itemcard = (imgUrl: any, name: any, description: any) => {
     return (
-      <div className="bg-[#ffc2894d] dark:bg-[#ccc] rounded-lg shadow-md p-6  text-center">
+      <>
         <img
           src={imgUrl}
           alt={name}
@@ -105,7 +107,7 @@ function MenuPage() {
         />
         <h3 className="text-2xl font-bold mb-2 dark:text-black">{name}</h3>
         <p className="dark:text-black">{description}</p>
-      </div>
+      </>
     );
   };
   const Menu = () => {
@@ -119,8 +121,15 @@ function MenuPage() {
             {t("Menu")}
           </h2>
           <div className="grid grid-cols-3 gap-8">
-            {listItem.map((item) => {
-              return Itemcard(item.img, item.title, item.description);
+            {listItem.map((item, index) => {
+              return (
+                <div
+                  className="bg-[#ffc2894d] dark:bg-[#ccc] rounded-lg shadow-md p-6  text-center"
+                  key={index}
+                >
+                  {Itemcard(item.img, item.title, item.description)}
+                </div>
+              );
             })}
           </div>
         </div>
@@ -197,8 +206,7 @@ function MenuPage() {
         <Loading />
       ) : (
         <div>
-          <NavigateHome />
-          <div className=" text-gray-800 font-body mt-[80px] ">
+          <div className=" text-gray-800 font-body ">
             <Title />
             <Menu />
 

@@ -1,6 +1,7 @@
 import Themefull from "@/components/Theme/Theme";
 import NextAuthWrapper from "@/library/nextauth.provider";
 import ThemeProvider from "@/library/ThemeProvider";
+import NProgressWrapper from "@/library/nextprogressBar.wrapper";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import "./globals.css";
@@ -25,13 +26,15 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body>
-        <NextIntlClientProvider messages={messages}>
-          <NextAuthWrapper>
-            <ThemeProvider>
-              <Themefull>{children}</Themefull>
-            </ThemeProvider>
-          </NextAuthWrapper>
-        </NextIntlClientProvider>
+        <NProgressWrapper>
+          <NextIntlClientProvider messages={messages}>
+            <NextAuthWrapper>
+              <ThemeProvider>
+                <Themefull>{children}</Themefull>
+              </ThemeProvider>
+            </NextAuthWrapper>
+          </NextIntlClientProvider>
+        </NProgressWrapper>
       </body>
     </html>
   );

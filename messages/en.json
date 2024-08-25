@@ -22,9 +22,12 @@
     "forget":"Forget password ?",
     "Or Sign Up":"Or Sign Up Using"
   },
-"RegisterPage   ":{
-    "title1":"If you have an account? ",
-    "title2":"Login now"
-   
-  }
+ 
+  "RegisterPage":{
+      "title1":"If you have an account? ",
+      "title2":"Login now"
+    
+    }
+    
+
 }

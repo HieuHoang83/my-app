@@ -106,7 +106,7 @@ function NavigateHome() {
         <div className="flex text-xl mr-8 items-center relative w-full sm:ml-auto md:text-2xl md:justify-end lg:text-3xl  ">
           <Link
             className="text-black font-medium sm:ml-3 md:ml-8  ml-2 dark:text-gray-200"
-            href="/"
+            href={`/${localActive}`}
           >
             Home
           </Link>

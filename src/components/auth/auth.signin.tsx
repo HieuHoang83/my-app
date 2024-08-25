@@ -68,7 +68,7 @@ function Login() {
           <p className="text-white text-xl sm:text-lg  w-[380px] sm:dark:text-white sm:text-black sm:w-[300px] ml-4 sm:ml-3 mt-3 h-[40px] block sm:mt-5 lg:mt-0 xl:mt-2 lg:ml-0">
             {t("title1")}
             <Link
-              href="register"
+              href="/auth/register"
               className="font-bold text-blue-600 sm:text-blue-500 pl-1 pr-1"
             >
               {t("title2")}
