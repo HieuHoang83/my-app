@@ -23,9 +23,14 @@ export default function ThemeProvider({ children }: Props) {
   useEffect(() => {
     // Lấy theme từ Local Storage khi component được mount
     const storedTheme = localStorage.getItem("theme");
+
     if (storedTheme) {
       setTheme(storedTheme);
       setIsloading(false);
+    }
+    else{
+      setIsloading(false);
+    
     }
   }, []);
 
