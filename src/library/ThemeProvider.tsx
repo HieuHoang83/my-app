@@ -27,10 +27,8 @@ export default function ThemeProvider({ children }: Props) {
     if (storedTheme) {
       setTheme(storedTheme);
       setIsloading(false);
-    }
-    else{
+    } else {
       setIsloading(false);
-    
     }
   }, []);
 
