@@ -65,7 +65,7 @@ function NavigateHome() {
         >
           Setting
         </button>
-        <div className="setting-menu hidden  bg-white dark:bg-[#4b5563] dark:border shadow-lg  rounded-l-md rounded-b-md  fixed top-[80px] right-[1px] w-[180px] overflow-hidden">
+        <div className="setting-menu hidden  bg-white dark:bg-[#4b5563]  shadow-lg  rounded-l-md rounded-b-md  fixed top-[70px] right-[1px] w-[180px] overflow-hidden">
           <h3 className="text-lg font-medium dark:text-gray-200 border-b  px-3 py-[4px]  cursor-default">
             Setting Options
           </h3>
@@ -102,7 +102,7 @@ function NavigateHome() {
 
   return (
     <header>
-      <div className="flex z-50 items-center h-[80px] fixed top-0 left-0 right-0  bg-[#ffc289] dark:bg-[#9e9e9e]">
+      <div className="flex z-50 items-center h-[70px] fixed top-0 left-0 right-0  dark:bg-white bg-[linear-gradient(309deg,#e4dac8_0%,#c3baab_100%)] dark:bg-[linear-gradient(to_bottom_right,_#173143,_rgba(0,_0,_0,_0.43))]">
         <div className="flex text-xl mr-8 items-center relative w-full sm:ml-auto md:text-2xl md:justify-end lg:text-3xl  ">
           <Link
             className="text-black font-medium sm:ml-3 md:ml-8  ml-2 dark:text-gray-200"
@@ -112,9 +112,9 @@ function NavigateHome() {
           </Link>
           <Link
             className="text-black dark:text-gray-200 font-medium sm:ml-3 md:ml-8  ml-2"
-            href={`/${localActive}/menu`}
+            href={`/${localActive}/info`}
           >
-            Menu
+            Information
           </Link>
           <Setting />
         </div>

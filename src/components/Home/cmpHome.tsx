@@ -5,12 +5,9 @@ import NavigateHome from "../header/header";
 import Loading from "../Loadingpage/loading";
 import { useEffect, useState } from "react";
 import { useThemeContext } from "@/library/ThemeProvider";
+import FooterPage from "../Footer/footer";
 
 function CmpHome() {
-  const { status } = useSession({
-    required: false,
-  });
-
   return (
     <>
       {status === "loading" ? (
@@ -19,6 +16,7 @@ function CmpHome() {
         <div>
           <NavigateHome />
           <MainHome />
+          <FooterPage />
         </div>
       )}
     </>

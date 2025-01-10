@@ -1,8 +1,8 @@
 import { PrimeReactProvider } from "primereact/api";
 import NavigateHome from "@/components/header/header";
 export const metadata = {
-  title: "Menu page",
-  description: "About page description",
+  title: "User Profile",
+  description: "User Profile",
 };
 
 export default function RootLayout({

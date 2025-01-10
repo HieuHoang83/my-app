@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import type { PluginAPI } from "tailwindcss/types/config";
 
 const config: Config = {
   module: "jit",
@@ -21,6 +22,7 @@ const config: Config = {
       },
       spacing: {
         35: "35px",
+        "50": "50px",
         "main-size": "100vh",
       },
       fontSize: {},
@@ -29,7 +31,19 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }: PluginAPI) {
+      addUtilities({
+        ".text-indent-50": {
+          "text-indent": "50px", // Tạo lớp tuỳ chỉnh cho text-indent
+        },
+        ".text-indent-30": {
+          "text-indent": "30px", // Tạo lớp tuỳ chỉnh cho text-indent
+        },
+      });
+    },
+    require("@tailwindcss/line-clamp"),
+  ],
 };
 
 export default config;
