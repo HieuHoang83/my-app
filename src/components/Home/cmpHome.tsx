@@ -5,7 +5,7 @@ import NavigateHome from "../header/header";
 import Loading from "../Loadingpage/loading";
 import { useEffect, useState } from "react";
 import { useThemeContext } from "@/library/ThemeProvider";
-import FooterPage from "../Footer/footer";
+import FooterComponent from "../Footer/footer";
 
 function CmpHome() {
   return (
@@ -16,7 +16,7 @@ function CmpHome() {
         <div>
           <NavigateHome />
           <MainHome />
-          <FooterPage />
+          <FooterComponent />
         </div>
       )}
     </>

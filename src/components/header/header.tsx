@@ -102,8 +102,8 @@ function NavigateHome() {
 
   return (
     <header>
-      <div className="flex z-50 items-center h-[70px] fixed top-0 left-0 right-0  dark:bg-white bg-[linear-gradient(309deg,#e4dac8_0%,#c3baab_100%)] dark:bg-[linear-gradient(to_bottom_right,_#173143,_rgba(0,_0,_0,_0.43))]">
-        <div className="flex text-xl mr-8 items-center relative w-full sm:ml-auto md:text-2xl md:justify-end lg:text-3xl  ">
+      <div className="flex z-50 items-center h-[50px] fixed top-0 left-0 right-0  dark:bg-white bg-[linear-gradient(309deg,#e4dac8_0%,#c3baab_100%)] dark:bg-[linear-gradient(to_bottom_right,_#173143,_rgba(0,_0,_0,_0.43))]">
+        <div className="flex text-xl mr-8 items-center relative w-full sm:ml-auto md:text-2xl md:justify-end lg:text-2xl  ">
           <Link
             className="text-black font-medium sm:ml-3 md:ml-8  ml-2 dark:text-gray-200"
             href={`/${localActive}`}
@@ -115,6 +115,12 @@ function NavigateHome() {
             href={`/${localActive}/info`}
           >
             Information
+          </Link>
+          <Link
+            className="text-black dark:text-gray-200 font-medium sm:ml-3 md:ml-8  ml-2"
+            href={`/${localActive}/course`}
+          >
+            Course
           </Link>
           <Setting />
         </div>

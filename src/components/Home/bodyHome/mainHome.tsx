@@ -104,7 +104,7 @@ function MainHome() {
         <Image
           src={logo} // Đảm bảo logo là đường dẫn hợp lệ
           alt="Trường Đại học ABC"
-          className=" mx-auto mt-[70px] w-[100vw] xl:h-[calc(100vh-70px)] filter brightness-[80%]"
+          className=" mx-auto mt-[50px] w-[100vw] xl:h-[calc(100vh-50px)] filter brightness-[80%]"
         />
       </header>
     );

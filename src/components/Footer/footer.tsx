@@ -1,4 +1,4 @@
-function FooterPage() {
+function FooterComponent() {
   return (
     <footer className="bg-gray-600 text-white py-6">
       <div className="container mx-auto text-center">
@@ -8,4 +8,4 @@ function FooterPage() {
   );
 }
 
-export default FooterPage;
+export default FooterComponent;

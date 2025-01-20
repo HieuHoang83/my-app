@@ -3,6 +3,7 @@ import { useState } from "react";
 import ProfilePage from "./PageInfo";
 import buttonnr from "./PageInfo";
 import UpdateInfoPage from "./UpdateInfoPage";
+import StudentRecord from "./studentRecord";
 
 function InfoPage() {
   const [activeIndex, setActiveIndex] = useState<number>(0); // Vị trí bắt đầu bằng 0 (nút đầu tiên được chọn mặc định)
@@ -23,9 +24,9 @@ function InfoPage() {
     setActiveIndex(0);
   };
   return (
-    <div className="px-8 py-4">
+    <div className="px-8 py-4 w-full">
       <nav className="bg-[#e8e8e8] text-white  shadow-sm ">
-        <div className="container flex justify-between items-center">
+        <div className="flex justify-between items-center">
           <ul className="flex justify-start">
             {listbreed.map((label, index) => (
               <li key={index}>
@@ -44,12 +45,15 @@ function InfoPage() {
           </ul>
         </div>
       </nav>
-      {activeIndex === 0 && (
-        <ProfilePage handleClickUpdate={handleClickUpdate} />
-      )}
-      {activeIndex === 2 && (
-        <UpdateInfoPage handleClickSave={handleClickSave} />
-      )}
+      <div className="">
+        {activeIndex === 0 && (
+          <ProfilePage handleClickUpdate={handleClickUpdate} />
+        )}
+        {activeIndex === 2 && (
+          <UpdateInfoPage handleClickSave={handleClickSave} />
+        )}
+        {activeIndex === 3 && <StudentRecord />}
+      </div>
     </div>
   );
 }

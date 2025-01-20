@@ -59,7 +59,7 @@ export default function ProfilePage({ handleClickUpdate }: InfoUserProps) {
   };
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 pb-[100px]">
       {/* Tiêu đề phần Thông tin cá nhân hoặc Thông tin giảng viên */}
       <div className="w-full h-8 bg-[linear-gradient(to_bottom_right,_rgb(85,_85,_223),_rgba(0,_248,_255,_0.431372549))] bg-[#3282b8] text-white text-center flex justify-center items-center">
         {typePerson(type) ? "Thông tin cá nhân" : "Thông tin giảng viên"}

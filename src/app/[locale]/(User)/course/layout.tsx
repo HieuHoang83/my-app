@@ -2,8 +2,8 @@ import { PrimeReactProvider } from "primereact/api";
 import NavigateHome from "@/components/header/header";
 import FooterComponent from "@/components/Footer/footer";
 export const metadata = {
-  title: "User Profile",
-  description: "User Profile",
+  title: "COURSE PAGE",
+  description: "course page",
 };
 
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <div className="h-[60px]">
+      <div className="h-[80px]">
         <NavigateHome />
       </div>
       {children}
