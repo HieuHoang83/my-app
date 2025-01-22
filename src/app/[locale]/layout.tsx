@@ -9,6 +9,7 @@ import "./globals.css";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 import "primeicons/primeicons.css";
+import Head from "next/head";
 
 export default async function LocaleLayout({
   children,
@@ -23,6 +24,18 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
       <body>
         <NProgressWrapper>
           <NextIntlClientProvider messages={messages}>

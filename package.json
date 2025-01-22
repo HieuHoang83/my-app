@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@tailwindcss/line-clamp": "^0.4.4",
     "axios": "^1.7.7",
     "cookies-next": "^4.2.1",

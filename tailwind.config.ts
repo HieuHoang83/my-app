@@ -25,9 +25,13 @@ const config: Config = {
         "50": "50px",
         "main-size": "100vh",
       },
-      fontSize: {},
+
       colors: {
         textPink: "rgb(255 120 120)",
+      },
+      fontFamily: {
+        serif: ['"PT Serif"', "serif"],
+        sans: ['"Roboto"', "sans-serif"],
       },
     },
   },

@@ -3,7 +3,9 @@ import { useState } from "react";
 import ProfilePage from "./PageInfo";
 import buttonnr from "./PageInfo";
 import UpdateInfoPage from "./UpdateInfoPage";
-import StudentRecord from "./studentRecord";
+import StudentRecord from "./studentScore";
+import SchedulePage from "./Schedule";
+import Calendar from "./Schedule";
 
 function InfoPage() {
   const [activeIndex, setActiveIndex] = useState<number>(0); // Vị trí bắt đầu bằng 0 (nút đầu tiên được chọn mặc định)
@@ -13,9 +15,10 @@ function InfoPage() {
   };
   let listbreed = [
     "Thông tin cá nhân",
-    "Bằng cấp",
+
     "Cập nhật thông tin",
     "Kết quả học tập",
+    "Lịch",
   ];
   const handleClickUpdate = () => {
     setActiveIndex(2);
@@ -49,10 +52,11 @@ function InfoPage() {
         {activeIndex === 0 && (
           <ProfilePage handleClickUpdate={handleClickUpdate} />
         )}
-        {activeIndex === 2 && (
+        {activeIndex === 1 && (
           <UpdateInfoPage handleClickSave={handleClickSave} />
         )}
-        {activeIndex === 3 && <StudentRecord />}
+        {activeIndex === 2 && <StudentRecord />}
+        {activeIndex === 3 && <Calendar />}
       </div>
     </div>
   );
