@@ -2,16 +2,13 @@
 import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { Button } from "primereact/button";
-import { Menu } from "primereact/menu";
-import { Toast } from "primereact/toast";
-import { useEffect, useRef, useState } from "react";
+
 import axios, { AxiosResponse } from "axios";
 import SwitchTheme from "@/components/switchbtn/switch.btn";
-import { useThemeContext } from "@/library/ThemeProvider";
 import LocalSwitcher from "../SwitchLangue/switcherLangue";
 import { usePathname, useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
+import { UserIcon } from "@heroicons/react/24/solid";
 async function fetchData(url: string, body: any) {
   // You can await here
   try {
@@ -56,32 +53,35 @@ function NavigateHome() {
         <button
           className={`setting-button font-medium ${
             isShow ? "text-white" : "text-black"
-          } dark:text-gray-200 px-4 py-2 rounded-md w-full `}
+          } dark:text-gray-200 pl-3 py-2 rounded-md w-full `}
           onClick={() => {
             const settingMenu = document.querySelector(".setting-menu");
             //@ts-ignore
             settingMenu.classList.toggle("hidden");
           }}
         >
-          Setting
+          <div className="bg-white rounded-full p-1">
+            <UserIcon className="h-[25px] w-[25px] text-black" />
+          </div>
         </button>
-        <div className="setting-menu hidden  bg-white dark:bg-[#4b5563]  shadow-lg  rounded-l-md rounded-b-md  fixed top-[70px] right-[1px] w-[180px] overflow-hidden">
-          <h3 className="text-lg font-medium dark:text-gray-200 border-b  px-3 py-[4px]  cursor-default">
+        <div className="setting-menu hidden  bg-white dark:bg-[#4b5563]  shadow-lg  rounded-l-md rounded-b-md  fixed top-[50px] right-[1px] w-[180px] overflow-hidden">
+          <h3 className="text-lg font-medium dark:text-gray-200 border-b  px-3 py-[4px] text-center cursor-default">
             Setting Options
           </h3>
-          <ul className=" ">
-            <li className="text-lg py-[5px] flex justify-end items-end border-b pr-3">
-              <SwitchTheme />
-            </li>
-            <li className="text-lg py-[4px] pl-4 border-b pr-3">
-              <LocalSwitcher></LocalSwitcher>
+          <ul className="">
+            {/* Nút "Đăng ký môn" */}
+            <li className="text-lg py-[5px] flex justify-start items-center border-b px-3 cursor-pointer">
+              <button className="w-full  px-3 py-1 hover:bg-[#cccccc80] transition duration-300 rounded-lg text-center">
+                Đăng ký môn
+              </button>
             </li>
 
-            <li className=" border-b text-lg w-full ">
+            {/* Nút Log out hoặc Sign up */}
+            <li className="border-b text-lg w-full">
               {session ? (
                 <button
                   onClick={handleLogout}
-                  className="block w-full bg-[#cccccc98] text-center"
+                  className="block w-full bg-[#cccccc98] text-center py-1 hover:bg-[#cccccc80]"
                 >
                   Log out
                 </button>
