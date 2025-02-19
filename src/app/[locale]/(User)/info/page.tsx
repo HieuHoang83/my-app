@@ -21,7 +21,7 @@ function InfoPage() {
     "Lịch",
   ];
   const handleClickUpdate = () => {
-    setActiveIndex(2);
+    setActiveIndex(1);
   };
   const handleClickSave = () => {
     setActiveIndex(0);

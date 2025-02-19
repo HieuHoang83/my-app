@@ -10,12 +10,12 @@ type UserData = {
   maClass: string;
   degree: string;
   birthday: string;
-  gender: string;
-  born: string;
+  birthplace: string;
+
   emailUniverity: string;
   contactEmail: string;
-  phone: string;
-  socialNetwork: string;
+  phoneNumber: string;
+  socialNetworkInfo: string;
   address: string;
   nameParent1: string;
   phoneParent1: string;
@@ -37,12 +37,12 @@ export default function UpdateInfoPage({ handleClickSave }: UpdateInfoPage) {
     maClass: "MT22KH02",
     degree: "",
     birthday: "2004-01-01",
-    gender: "Nam",
-    born: "Đồng Tháp",
+    birthplace: "Đồng Tháp",
+
     emailUniverity: "hieu.hoangminh832004@hcmut.edu.vn",
     contactEmail: "abc@gmail.com",
-    phone: "0978196355",
-    socialNetwork: "facebook.com/anguyenpro",
+    phoneNumber: "0978196355",
+    socialNetworkInfo: "facebook.com/anguyenpro",
     address: "Bình Dương",
     nameParent1: "Nguyễn Hoàng",
     relationship1: "father",
@@ -142,26 +142,6 @@ export default function UpdateInfoPage({ handleClickSave }: UpdateInfoPage) {
             <p>{userData.emailUniverity}</p>
           </div>
 
-          {/* Giới tính */}
-          <div
-            className="flex items-center mb-4 h-[60px] pr-5"
-            style={{ backgroundColor: "rgb(243, 244, 246)" }}
-          >
-            <p className="w-[280px] pl-[15px] font-semibold font-semibold">
-              Giới tính
-            </p>
-            <select
-              name="gender"
-              value={userData.gender}
-              onChange={handleChange}
-              className="w-[150px] border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#ff9000] pl-4 py-2 rounded-md shadow-sm"
-            >
-              <option value="Nam">Nam</option>
-              <option value="Nữ">Nữ</option>
-              <option value="Khác">Khác</option>
-            </select>
-          </div>
-
           {/* Ngày sinh */}
           <div
             className="flex items-center mb-4 h-[60px] pr-5"
@@ -188,8 +168,8 @@ export default function UpdateInfoPage({ handleClickSave }: UpdateInfoPage) {
             </p>
             <input
               type="text"
-              name="phone"
-              value={userData.phone}
+              name="phoneNumber"
+              value={userData.phoneNumber}
               onChange={handleChange}
               className="w-[150px]  border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#ff9000] pl-4 py-2 rounded-md shadow-sm"
             />
@@ -222,14 +202,30 @@ export default function UpdateInfoPage({ handleClickSave }: UpdateInfoPage) {
             </p>
             <input
               type="text"
-              name="socialNetwork"
-              value={userData.socialNetwork}
+              name="socialNetworkInfo"
+              value={userData.socialNetworkInfo}
               onChange={handleChange}
               className="w-[300px]  border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#ff9000] pl-4 py-2 rounded-md shadow-sm"
             />
           </div>
 
           {/* Địa chỉ */}
+          <div
+            className="flex items-center mb-4 h-[60px] pr-5"
+            style={{ backgroundColor: "rgb(243, 244, 246)" }}
+          >
+            <p className="w-[280px] pl-[15px] font-semibold font-semibold">
+              Nơi sinh
+            </p>
+
+            <input
+              type="text"
+              name="birthplace"
+              value={userData.birthplace}
+              onChange={handleChange}
+              className="w-[300px]  border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#ff9000] pl-4 py-2 rounded-md shadow-sm"
+            />
+          </div>
           <div
             className="flex items-center mb-4 h-[60px] pr-5"
             style={{ backgroundColor: "rgb(243, 244, 246)" }}
@@ -337,7 +333,7 @@ export default function UpdateInfoPage({ handleClickSave }: UpdateInfoPage) {
               Mối quan hệ
             </p>
             <select
-              name="relationship1"
+              name="relationship2"
               value={userData.relationship2}
               onChange={handleChange}
               className=" w-[200px] pl-4 py-2 rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#ff9000] shadow-sm"
@@ -358,7 +354,7 @@ export default function UpdateInfoPage({ handleClickSave }: UpdateInfoPage) {
             </p>
             <input
               type="text"
-              name="phoneParent1"
+              name="phoneParent2"
               value={userData.phoneParent2}
               onChange={handleChange}
               className="w-[350px] border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#ff9000] pl-4 py-2 rounded-md shadow-sm"
