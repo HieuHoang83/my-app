@@ -1,6 +1,7 @@
 "use client";
 import { Question } from "@/components/viewQuestion/viewQuestion";
 import { useState, useRef } from "react";
+import { ChevronLeftIcon } from "@heroicons/react/16/solid";
 
 export default function QuizPage() {
   const questions = [
@@ -155,6 +156,11 @@ export default function QuizPage() {
       ],
     },
   ];
+  const [isOpen, setIsOpen] = useState(false);
+
+  const togglePanel = () => {
+    setIsOpen(!isOpen);
+  };
 
   const [selectedAnswers, setSelectedAnswers] = useState<(string | null)[]>(
     Array(questions.length).fill(null)
@@ -207,56 +213,80 @@ export default function QuizPage() {
           </div>
         ))}
       </div>
-      <div className="w-[300px] h-[calc(100vh - 60px)]">
-        <div className="fixed top-[60px] right-0 bottom-0  w-[300px] h-[calc(100vh - 60px)] bg-gray-100 px-5 py-5 overflow-y-auto">
-          <div className="mb-4 ml-auto cursor-pointer bg-[#0388b4] text-white font-bold w-[30px] h-[40px] flex justify-center items-center rounded-md text-md">
-            X
-          </div>
-          <div className="bg-white border-2 border-gray-300 rounded-md">
-            <div className="p-4 border-b-2 text-blue-700 text-lg font-bold">
-              Bảng câu hỏi
-            </div>
-            <div className="bg-gray-100 h-fit flex flex-col">
-              <div className="grid grid-cols-5 gap-x-4 gap-y-2 px-4 py-3">
-                {questions.map((_, index) => {
-                  const isSelected = selectedAnswers[index] !== null;
-                  const isFlagged = flaggedQuestions[index];
 
-                  return (
-                    <div
-                      key={index}
-                      className={`w-[30px] h-[40px] border-[1px] border-black flex justify-center items-center rounded-[5px] cursor-pointer select-none 
+      <div
+        className={` transition-width duration-300 ${
+          isOpen ? "w-[300px]" : "w-0"
+        }`}
+      >
+        <div className="w-[300px] fixed top-[60px] right-0 bottom-0">
+          <div
+            className={`w-full h-full bg-gray-100 pl-5 pr-3 py-5 overflow-y-auto transition-transform duration-300 ${
+              isOpen ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            <div
+              className="mb-4 ml-auto cursor-pointer bg-[#0388b4] text-white font-bold w-[30px] h-[40px] flex justify-center items-center rounded-md text-md"
+              onClick={togglePanel}
+            >
+              X
+            </div>
+            <div className="bg-white border-2 border-gray-300 rounded-md">
+              <div className="p-4 border-b-2 text-blue-700 text-lg font-bold">
+                Bảng câu hỏi
+              </div>
+              <div className="bg-gray-100 h-fit flex flex-col">
+                <div className="grid grid-cols-5 gap-x-4 gap-y-2 px-4 py-3">
+                  {questions.map((_, index) => {
+                    const isSelected = selectedAnswers[index] !== null;
+                    const isFlagged = flaggedQuestions[index];
+
+                    return (
+                      <div
+                        key={index}
+                        className={`w-[30px] h-[40px] border-[1px] border-black flex justify-center items-center rounded-[5px] cursor-pointer select-none 
                       ${isSelected ? "bg-green-600 text-white" : "bg-white"}
                     `}
-                      onClick={() => handleChangeQuestion(index)}
-                    >
-                      {isFlagged ? (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill={"red"}
-                          viewBox="0 0 24 24"
-                          strokeWidth="1.5"
-                          stroke="currentColor"
-                          className="size-5"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"
-                          />
-                        </svg>
-                      ) : (
-                        index + 1
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="text-blue-700 px-4 cursor-pointer hover:opacity-75 mt-2 mb-5 text-center">
-                Nộp bài
+                        onClick={() => handleChangeQuestion(index)}
+                      >
+                        {isFlagged ? (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill={"red"}
+                            viewBox="0 0 24 24"
+                            strokeWidth="1.5"
+                            stroke="currentColor"
+                            className="size-5"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"
+                            />
+                          </svg>
+                        ) : (
+                          index + 1
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="text-blue-700 px-4 cursor-pointer hover:opacity-75 mt-2 mb-5 text-center">
+                  Nộp bài
+                </div>
               </div>
             </div>
           </div>
+
+          {/* Nút mở Panel */}
+          {!isOpen && (
+            <div
+              className="absolute top-1 right-0 bg-blue-700 cursor-pointer rounded-l-full p-1 pl-0 w-9 h-9 mt-2 transition-all duration-300 hover:w-11 flex items-center justify-start"
+              onClick={togglePanel}
+            >
+              <ChevronLeftIcon className="h-8 w-8 text-white" />
+            </div>
+          )}
         </div>
       </div>
     </div>
