@@ -31,6 +31,7 @@ export default function Page({ params }: { params: { id: string } }) {
   const [selectedButton, setSelectedButton] = useState<"course" | "score">(
     "course"
   );
+  console.log(params.id);
   const handleButtonClick = (button: "course" | "score") => {
     setSelectedButton(button);
   };

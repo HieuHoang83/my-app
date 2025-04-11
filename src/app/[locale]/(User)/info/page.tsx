@@ -26,6 +26,7 @@ function InfoPage() {
   const handleClickSave = () => {
     setActiveIndex(0);
   };
+
   return (
     <div className="px-8 py-4 w-full">
       <nav className="bg-[#e8e8e8] text-white  shadow-sm ">

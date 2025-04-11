@@ -22,10 +22,21 @@ const config: Config = {
           "0%": { transform: "translateX()" },
           "100%": { transform: "translateX(100%)" },
         },
+        flip: {
+          "0%": { transform: "rotateY(0deg)" },
+          "100%": { transform: "rotateY(180deg)" },
+        },
       },
       animation: {
         "slide-in": "slide-in 0.5s ease-out forwards",
         "slide-out": "slide-out 0.5s ease-out forwards",
+        flip: "flip 0.5s ease-in-out",
+      },
+      transformOrigin: {
+        "center-center": "center center",
+      },
+      perspective: {
+        1000: "1000px",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -57,6 +68,18 @@ const config: Config = {
         },
         ".text-indent-30": {
           "text-indent": "30px", // Tạo lớp tuỳ chỉnh cho text-indent
+        },
+        ".perspective": {
+          perspective: "1000px",
+        },
+        ".preserve-3d": {
+          transformStyle: "preserve-3d",
+        },
+        ".backface-hidden": {
+          backfaceVisibility: "hidden",
+        },
+        ".rotate-y-180": {
+          transform: "rotateY(180deg)",
         },
       });
     },

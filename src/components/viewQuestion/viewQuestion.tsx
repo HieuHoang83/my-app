@@ -72,6 +72,7 @@ export const Question: React.FC<QuestionProps> = ({
       <STT />
       <div className="relative py-3 px-5 border-0 rounded-lg shadow-md bg-[#e7f3f5] sm:w-full md:w-[640px]  lg:w-[768px] xl:w-[896px] ">
         <h3 className="text-lg font-semibold text-gray-800 mb-4">{question}</h3>
+        
         <div className="flex flex-col space-y-2">
           {options.map((option, index) => (
             <label
