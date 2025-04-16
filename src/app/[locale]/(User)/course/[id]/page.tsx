@@ -43,27 +43,25 @@ export default function Page({ params }: { params: { id: string } }) {
         </h1>
         <div className="flex flex-row justify-center mt-10">
           <button
-            className={`text-lg mt-4 w-[250px] h-[50px] flex items-center justify-center float-right mr-4 rounded-md ${
-              selectedButton === "course"
-                ? "bg-[linear-gradient(to_bottom_right,_rgb(85,_85,_223),_rgba(255,_0,_0,_0.431372549))] bg-[#d7a5a5] text-white cursor-default"
-                : "bg-gray-200 cursor-pointer"
-            }`}
+            className={`text-lg mt-4 w-[250px] h-[50px] flex items-center justify-center float-right mr-4 rounded-md ${selectedButton === "course"
+              ? "bg-[linear-gradient(to_bottom_right,_rgb(85,_85,_223),_rgba(255,_0,_0,_0.431372549))] bg-[#d7a5a5] text-white cursor-default"
+              : "bg-gray-200 cursor-pointer"
+              }`}
             onClick={() => handleButtonClick("course")}
           >
             Khóa học
           </button>
           <button
-            className={`text-lg mt-4 w-[250px] h-[50px] flex items-center justify-center float-right mr-4 rounded-md cursor-default ${
-              selectedButton === "score"
-                ? "bg-[linear-gradient(to_bottom_right,_rgb(85,_85,_223),_rgba(255,_0,_0,_0.431372549))] bg-[#d7a5a5] text-white"
-                : "bg-gray-200 cursor-pointer"
-            }`}
+            className={`text-lg mt-4 w-[250px] h-[50px] flex items-center justify-center float-right mr-4 rounded-md cursor-default ${selectedButton === "score"
+              ? "bg-[linear-gradient(to_bottom_right,_rgb(85,_85,_223),_rgba(255,_0,_0,_0.431372549))] bg-[#d7a5a5] text-white"
+              : "bg-gray-200 cursor-pointer"
+              }`}
             onClick={() => handleButtonClick("score")}
           >
             Điểm số
           </button>
-        </div>
-        {selectedButton === "course" && <CoursePage></CoursePage>}
+        </div >
+        {selectedButton === "course" && <CoursePage ></CoursePage>}
         {selectedButton === "score" && <ScoreClass></ScoreClass>}
       </div>
     </>

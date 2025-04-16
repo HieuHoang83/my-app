@@ -30,7 +30,7 @@ const RegistrationPeriods: React.FC = () => {
       <div className="w-full">
         <DataTable
           value={registrationPeriods}
-          className="mb-4 text-sm shadow-sm"
+          className="flex mb-4 text-[10px] shadow-sm md:text-[1rem]"
         >
           <Column
             field="startDate"
@@ -50,7 +50,7 @@ const RegistrationPeriods: React.FC = () => {
     );
   };
   return (
-    <div className="container block px-8 pb-8 ">
+    <div className=" block px-8 pb-8 ">
       <div className="border-[2px] border-[#3f9bd0]  w-full  rounded-md ">
         <div className="h-[45px] flex bg-[#337fab]  text-white text-[20px] justify-center   items-center">
           <p>
@@ -58,14 +58,14 @@ const RegistrationPeriods: React.FC = () => {
             2
           </p>
         </div>
-        <div className="flex w-full min-h-[calc(100vh-105px)]">
-          <div className=" w-[25%] px-4">
+        <div className="flex flex-col sm:flex-row w-full min-h-[calc(100vh-105px)]">
+          <div className=" md:text-[10px]  w-full sm:w-[25%] sm:text-xl px-4">
             <div className="mt-16 border-t-[3px] border-[#337fab] w-full rounded-[3px]">
               <p className="text-lg p-2">Thời gian đăng ký</p>
               <RegistrationTable></RegistrationTable>
             </div>
           </div>
-          <div className="w-[75%] p-4 ">
+          <div className=" w-full md:w-[75%] p-4 ">
             <div className=" border-t-[3px] border-[#337fab] w-full rounded-[3px]  min-h-[65vh]">
               <p className="text-lg px-4 py-1">Chọn môn đăng ký</p>
               <div className="px-4 flex my-3 ">
@@ -85,8 +85,8 @@ const RegistrationPeriods: React.FC = () => {
                 </p>
               </div>
             </div>
-            <div className="border-t-[3px] border-[#3f9bd0] w-full rounded-[3px]  px-4   ">
-              <p className="text-lg p-2">Phiếu đăng ký</p>
+            <div className="border-t-[3px] border-[#3f9bd0] w-full rounded-[3px]  px-4 text-[10px] md:text-[1rem]  ">
+              <p className="text-[12px] md:text-[1rem] p-2">Phiếu đăng ký</p>
               <div className="border-2 border-[#3f9bd0] flex flex-col ">
                 <div className="text-lg p-2 bg-[#3f9bd0] text-white">
                   Danh sách đã đăng ký

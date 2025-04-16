@@ -153,7 +153,7 @@ export default function Page() {
       <h1 className="text-3xl font-bold text-center mb-8">Danh sách môn học</h1>
 
       {/* Chọn kỳ học */}
-      <div className="flex flex-row items-center mx-60 ">
+      <div className="flex flex-row items-center mx-54 ml-2">
         <h2 className="text-xl mr-2">Chọn kỳ học :</h2>
         <select
           value={selectedSemester.id}
@@ -169,7 +169,7 @@ export default function Page() {
       </div>
 
       {/* Hiển thị danh sách khóa học */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mx-60 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 md:m-8 lg:grid-cols-3 gap-8 place-items-center mt-10">
         {selectedSemester.courses.map((course) => (
           <CourseCard key={course.id} course={course} />
         ))}

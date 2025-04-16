@@ -50,12 +50,12 @@ export default function ScoreClass() {
   ];
 
   return (
-    <main className="p-8 container mx-auto ">
-      <div className="p-4">
+    <main className="p-2  mx-auto   ">
+      <div className="p-2 text-[8px] sm:text-xs sm:p-2 md:text-xl lg:text-xl">
         <DataTable
           value={courses}
           showGridlines
-          className="text-lg table-auto w-[900px] mx-auto"
+          className="text-[10px] sm:text-xs table-auto w-[100%] lg:w-[65%] md:w-[80%] sm:w-[90%]  mx-auto text-nowrap"
         >
           {/* Họ và Tên */}
           <Column
@@ -68,7 +68,7 @@ export default function ScoreClass() {
               color: "white",
               fontWeight: "bold",
             }}
-            className="pl-4 text-center font-semibold"
+            className="pl-4 text-center font-semibold text-nowrap "
           ></Column>
 
           {/* Mã Sinh Viên */}
@@ -96,7 +96,7 @@ export default function ScoreClass() {
               color: "white",
               fontWeight: "bold",
             }}
-            className="pl-4 text-center font-semibold"
+            className="pl-4 text-center font-semibold "
           ></Column>
           <Column
             field="diemBTL"

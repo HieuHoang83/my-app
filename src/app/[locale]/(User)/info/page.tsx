@@ -35,11 +35,10 @@ function InfoPage() {
               <li key={index}>
                 <div
                   onClick={() => handleClick(index)} // Gọi hàm khi nút được bấm
-                  className={`text-black w-[170px] py-[8px] px-2 flex justify-center text-md font-semibold  ${
-                    activeIndex === index
+                  className={`text-black w-[170px] py-[8px] px-2 flex justify-center text-md font-semibold  ${activeIndex === index
                       ? "bg-white  border-gray-600 border-2  rounded-tr-[15px] border-gray-300 hover:cursor-default" // Nếu là nút được chọn
                       : "bg-gray-200 text-gray-700 cursor-pointer hover:bg-gray-300 hover:border-[#333] hover:border-solid hover:text-black hover:shadow-lg" //
-                  }`}
+                    }`}
                 >
                   {label}
                 </div>

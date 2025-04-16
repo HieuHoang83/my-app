@@ -95,7 +95,7 @@ function CoursePage() {
   let Description = ({ notify }: { notify: string }) => {
     return (
       <div className="flex justify-center my-3 ml-[20px]">
-        <div className="p-4 pt-2 bg-gray-200 text-[18px] font-medium w-[840px] flex items-center text-black min-h-[50px] relative border border-gray-300 rounded-xl">
+        <div className="p-4 pt-2 bg-gray-200 text-[18px] m-5 font-medium w-[840px] flex items-center text-black min-h-[50px] relative border border-gray-300 rounded-xl">
           <p className="text-justify">{notify}</p>
         </div>
       </div>
@@ -109,7 +109,7 @@ function CoursePage() {
 
   let ChapterComponent = ({ chapter }: ChapterComponentProps) => {
     return (
-      <div className="border-gray-300 rounded-2xl border py-1 w-[900px] mx-auto flex justify-start flex-col my-6 overflow-hidden">
+      <div className="border-gray-300 rounded-2xl border py-1 md:w-[60%] sm:w-[550px] mx-auto flex justify-start flex-col my-6 overflow-hidden">
         <Title
           title={chapter.name}
           onclick={() => toggleActive(chapter.id)}

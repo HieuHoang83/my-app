@@ -85,7 +85,7 @@ const RegistrationPeriods: React.FC = () => {
 
     if (currentDate < start) {
       return (
-        <span style={{ color: "gray", fontStyle: "italic", fontSize: "16px" }}>
+        <span style={{ color: "gray", fontStyle: "italic" }}>
           Chưa Mở
         </span>
       );
@@ -100,7 +100,7 @@ const RegistrationPeriods: React.FC = () => {
       );
     } else {
       return (
-        <span style={{ color: "red", fontWeight: "bold", fontSize: "16px" }}>
+        <span style={{ color: "red", fontWeight: "bold", }}>
           Hết Hạn
         </span>
       );
@@ -154,15 +154,15 @@ const RegistrationPeriods: React.FC = () => {
         value={registrationPeriods}
         paginator
         rows={5}
-        className="mb-4 mt-20 container max-w-[1200px] mx-auto "
+        className="mb-4 mt-20 max-w-[1200px] mx-1 sm:mx-auto text-[10px] sm:text-xs md:text-[18px] text-nowrap "
       >
         <Column
           field="name"
           header="Tên Đợt Đăng Ký"
           headerStyle={{
-            paddingLeft: "80px",
+
           }}
-          className="w-[30%] pl-[60px]"
+          className="w-[25%]  text-nowrap text-start"
         ></Column>
         <Column
           field="startDate"
@@ -188,10 +188,10 @@ const RegistrationPeriods: React.FC = () => {
           headerStyle={{
             justifyItems: "center",
           }}
-          className="w-[20%] text-center"
+          className="w-[20%] text-center text-[10px] sm:text-xs md:text-[18px]"
         ></Column>
       </DataTable>
-    </div>
+    </div >
   );
 };
 
